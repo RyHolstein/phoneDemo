@@ -25,10 +25,13 @@ function clearNum() {
 function playSound(number) {
     
     if (number == 1) {
-       audio_1.play();
+        stopAudio()
+        audio_1.play();
    } else if (number == 2 ){
-       audio_2.play();
+        stopAudio()
+        audio_2.play();
    } else {
+       stopAudio()
        audio_3.play();
    }
 }
