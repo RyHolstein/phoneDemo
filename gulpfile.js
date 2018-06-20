@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 gulp.task('connect', function() {
   connect.server({
-    root: '.',
+    root: './public',
     livereload: true
   })
 });
@@ -23,24 +23,24 @@ gulp.task('sass', function() {
   gulp.src('./styling/scss/*.scss')
   .pipe(sass({style: 'expanded'}))
     .on('error', gutil.log)
-  .pipe(gulp.dest('./styling/css'))
+  .pipe(gulp.dest('./public/assets/css'))
   .pipe(connect.reload())
 
 });
 
 //js
 gulp.task('scripts', function() {
-  return gulp.src('./js/*.js')
+  return gulp.src('./styling/js/*.js')
     .pipe(concat('all.js'))
     //.pipe(uglify('all.js'))
-    .pipe(gulp.dest('./build/js'));
+    .pipe(gulp.dest('./public/assets/js'));
 });
 
 // watch these
 gulp.task('watch', function() {
   gulp.watch('./build/**/*.html', ['html']);
   gulp.watch('./styling/scss/*.scss', ['sass']);
-  gulp.watch('./js/*.js', ['scripts']);
+  gulp.watch('./styling/js/*.js', ['scripts']);
 
 });
 
