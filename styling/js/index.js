@@ -64,14 +64,15 @@ function buttonPress(num) {
     stopAllAudio();
    if(!has_called) {
        var sbSound = call_options[num];
+       sbSound.audio.addEventListener('ended', function(){
+            call_options[0].audio.currentTime = 0;
+            call_options[0].audio.play()
+       })
        setTimeout(function(){
            sbSound.audio.play()
            console.log('timeout Completed')
        }, 1000);
    }
-    
-        
-    
 }
 
 
@@ -101,12 +102,7 @@ function stopAllAudio() {
     })
 }
 
-var start_timeout = setTimeout(function(){
-    ringing.pause()
-    call_options[0].audio.play()
-    has_called = false;
-    callID.innerHTML = "Spaghetti boys"
-}, 3000)
+
 
 function startCall() {
     if (has_called) {
@@ -118,7 +114,7 @@ function startCall() {
             has_called = false;
             callID.innerHTML = "Spaghetti boys"
         }, 3000)
-        start_timeout
+        
     }
 }
 
