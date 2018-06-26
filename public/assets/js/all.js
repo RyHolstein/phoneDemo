@@ -101,16 +101,32 @@ function stopAllAudio() {
     })
 }
 
+var start_timeout = setTimeout(function(){
+    ringing.pause()
+    call_options[0].audio.play()
+    has_called = false;
+    callID.innerHTML = "Spaghetti boys"
+}, 3000)
 
 function startCall() {
     if (has_called) {
         ringing.play()
         callID.innerHTML = "calling"
-        setTimeout(function(){
+        var start_timeout = setTimeout(function(){
             ringing.pause()
             call_options[0].audio.play()
             has_called = false;
             callID.innerHTML = "Spaghetti boys"
         }, 3000)
+        start_timeout
     }
+}
+
+function hangUp() {
+    stopAllAudio()
+    ringing.pause()
+    ringing.currentTime = 0;
+    has_called = true;
+    callID.innerHTML = ""
+    clearTimeout();
 }
