@@ -12,11 +12,14 @@
 
 
 var phone_beep = new Audio('./assets/sounds/beep_Sound.mp3')
+var ringing = new Audio('./assets/sounds/effects/phone_ringing.mp3')
 
 
+var callID = document.getElementById('Mock-Phone__number')
 var soundOne = document.getElementById('button-1')
 var can_select = false; 
 var recentPressed = '';
+var has_called = true;
 
 
 var call_options = {
@@ -59,12 +62,13 @@ function buttonPress(num) {
     recentPressed = String(num);
     phoneDial();
     stopAllAudio();
-   
-    var sbSound = call_options[num];
-    setTimeout(function(){
-        sbSound.audio.play()
-        console.log('timeout Completed')
-    }, 1000)
+   if(!has_called) {
+       var sbSound = call_options[num];
+       setTimeout(function(){
+           sbSound.audio.play()
+           console.log('timeout Completed')
+       }, 1000);
+   }
     
         
     
@@ -84,10 +88,10 @@ function playMenu() {
     media_menu.currentTime = 0;
     media_menu.play()
 }
-// function selectChange() {
-//     can_select = !can_select;
-//     console.log(can_select);
-// }
+function selectChange() {
+    can_select = !can_select;
+    console.log(can_select);
+}
 
 
 function stopAllAudio() {
@@ -98,8 +102,15 @@ function stopAllAudio() {
 }
 
 
-window.onload = function() {
-    var sbmenu = call_options[0]
-    sbmenu.audio.play();
-    //window.setTimeout(selectChange, 2500)
-  };
+function startCall() {
+    if (has_called) {
+        ringing.play()
+        callID.innerHTML = "calling"
+        setTimeout(function(){
+            ringing.pause()
+            call_options[0].audio.play()
+            has_called = false;
+            callID.innerHTML = "Spaghetti boys"
+        }, 3000)
+    }
+}
