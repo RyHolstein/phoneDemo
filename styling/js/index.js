@@ -1,5 +1,4 @@
 var phone_beep = new Audio('./assets/sounds/beep_Sound.mp3')
-var media_menu = new Audio('./assets/sounds/411.mp3')
 
 
 var soundOne = document.getElementById('button-1')
@@ -8,6 +7,9 @@ var recentPressed = '';
 
 
 var call_options = {
+    0 : {
+        audio: new Audio('./assets/sounds/voicemail/sbphone.mp3')
+    },
     1 : {
         audio: new Audio('./assets/sounds/lebron_james_kid.mp3')
     },
@@ -41,10 +43,12 @@ function clearNum() {
 
 
 function phoneDial() {
+    phone_beep.pause()
     phone_beep.currentTime = 0;
     phone_beep.play()
 }
 function playMenu() {
+    
     media_menu.currentTime = 0;
     media_menu.play()
 }
@@ -54,6 +58,6 @@ function selectChange() {
 }
 
 window.onload = function() {
-    playMenu();
+    call_options[0].play();
     window.setTimeout(selectChange, 2500)
   };
