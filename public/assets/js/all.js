@@ -102,13 +102,13 @@ function stopAllAudio() {
     })
 }
 
-
+var startHold;
 
 function startCall() {
     if (has_called) {
         ringing.play()
         callID.innerHTML = "calling"
-        var start_timeout = setTimeout(function(){
+        startHold = setTimeout(function(){
             ringing.pause()
             call_options[0].audio.play()
             has_called = false;
@@ -119,10 +119,10 @@ function startCall() {
 }
 
 function hangUp() {
+    clearTimeout(startHold);
     stopAllAudio()
     ringing.pause()
     ringing.currentTime = 0;
     has_called = true;
-    callID.innerHTML = ""
-    clearTimeout();
+    callID.innerHTML = "";
 }
