@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    text-align: center
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
   
 
@@ -13,9 +14,9 @@ body {
 .Mock-Phone__holder {
     display: inline-block;
     position: relative;
-    width: 200px; height: 375px;
+    width: 375px; height: 812px;
     
-    border: 1px solid #222222;
+    border: 1px solid  #E5E5E5;
     border-radius: 10px;
 }
 
@@ -29,19 +30,52 @@ body {
     
     
 
-    border: 1px solid lightgray;
+    //border: 1px solid lightgray;
 
 }
 .keypad {
-
-    button { 
-        width: 50px; height: 50px;
-        margin: 5px;
+    margin-top: 175px;
+    
+    
+    .keypad__button {
+        display: inline-block;
+        position: relative;
+        width: 75px; height: 75px;
+        margin: 10px;
+        //border: .5px solid grey;
         border-radius: 50px;
         vertical-align: top;
-        
-    }
-}
-.keypad--row {
+        background: #E5E5E5;
+     
+        .keypad__button--number {
+            position: absolute;
+            
+            font-size: 1.9em; 
+            font-weight: 400;
+            left: 50%; top: 20%;
+            transform: translateX(-50%);
+            margin: 0;
+            
+            span {
+                display: block;
+                font-size: .3em;
+                font-weight: 500;
+                letter-spacing: 1px;
+            }
+        }
 
+       
+    }
+
+
+    button { 
+        width: 70px; height: 70px;
+        margin: 8px;
+        border-radius: 50px;
+        vertical-align: top;
+        background-color: #4BD964;
+        border: none;
+        outline: none;
+    
+    }
 }

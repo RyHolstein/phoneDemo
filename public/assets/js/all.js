@@ -80,9 +80,8 @@ function buttonPress(num) {
 
 
 function phoneDial() {
-    phone_beep.pause()
-    phone_beep.currentTime = 0;
-    phone_beep.play()
+
+    phone_beep.cloneNode(true).play()
 }
 function playMenu() {
     

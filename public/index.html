@@ -5,38 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
     <p>Sound Demo</p>
     <div class="Mock-Phone__holder">
         <div id="Mock-Phone__number"></div>
+        
+        
+        
+        
         <div class="keypad">
                 <div class="keypad--row">
-                    <button onclick='buttonPress(1)'>1</button>
-                    <button onclick='buttonPress(2)'>2</button>
-                    <button onclick='buttonPress(3)'>3</button>
+                    <div class="keypad__button" onclick='buttonPress(1)'><p class="keypad__button--number">1</p></div>
+                    <div class="keypad__button" onclick='buttonPress(2)'><p class="keypad__button--number">2<span>ABC</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(3)'><p class="keypad__button--number">3<span>DEF</span></p></div>
+<!-- 
+                    <button onclick='buttonPress(1)'>1<span>  </span></button>
+                    <button onclick='buttonPress(2)'>2<span>abc</span></button>
+                    <button onclick='buttonPress(3)'>3</button> -->
                     
                 </div>
                 <div class="keypad--row">
-
-                    <button onclick='buttonPress(4)' >4</button>
+                    <div class="keypad__button" onclick='buttonPress(4)'><p class="keypad__button--number">4<span>GHI</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(5)'><p class="keypad__button--number">5<span>JKL</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(6)'><p class="keypad__button--number">6<span>MNO</span></p></div>
+                    
+                    <!-- <button onclick='buttonPress(4)' >4</button>
                     <button onclick='buttonPress(5)' >5</button>
-                    <button onclick='buttonPress(6)' >6</button>
+                    <button onclick='buttonPress(6)' >6</button> -->
                     
                 </div>
                 <div class="keypad--row">
+                    <div class="keypad__button" onclick='buttonPress(7)'><p class="keypad__button--number">7<span>PQRS</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(8)'><p class="keypad__button--number">8<span>TUV</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(9)'><p class="keypad__button--number">9<span>WXYZ</span></p></div>
 
-                    <button onclick='buttonPress(7)' >7</button>
+
+                    <!-- <button onclick='buttonPress(7)' >7</button>
                     <button onclick='buttonPress(8)' >8</button>
-                    <button onclick='buttonPress(9)' >9</button>
+                    <button onclick='buttonPress(9)' >9</button> -->
                     
                 </div>
                 <div class="keypad--row">
-                    <button onclick='hangUp()' >End Call</button>
+                    <div class="keypad__button" onclick='hangUp()'><p class="keypad__button--number">*</p></div>
+                    <div class="keypad__button" onclick='buttonPress(0)'><p class="keypad__button--number">0<span>+</span></p></div>
+                    <div class="keypad__button" onclick='buttonPress(1)'><p class="keypad__button--number">#</p></div>
+
+
+                    <!-- <button onclick='hangUp()' >*</button>
                     <button onclick='buttonPress(0)' >0</button>
-                    <button onclick='startCall()' >Call</button>
+                    <button onclick='startCall()' >#</button> -->
                     
+                </div>
+                <div class="keypad--row">
+                    <button id="call--button"onclick='startCall()' >Call</button> 
                 </div>
         </div>
 
