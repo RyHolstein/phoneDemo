@@ -13,13 +13,16 @@
 
 var phone_beep = new Audio('./assets/sounds/beep_Sound.mp3')
 var ringing = new Audio('./assets/sounds/effects/phone_ringing.mp3')
+var phoneTimer;
 
 
-var callID = document.getElementById('Mock-Phone__number')
 var soundOne = document.getElementById('button-1')
+var callButton = document.getElementById('call--button');
+var contactSub = document.getElementById('contact-sub');
+
 var can_select = false; 
 var recentPressed = '';
-var has_called = true;
+var callInProgress = false;
 
 
 var call_options = {
@@ -58,6 +61,51 @@ var call_options = {
 
 }
 
+
+
+function callController() {
+    if (callInProgress) {
+        hangUp();
+       
+        callButton.classList.remove('phone--hangup');
+        callButton.classList.add('phone--call');
+        clearInterval(phoneTimer);
+        
+    }else {
+        startCall();
+        callButton.classList.remove('phone--call');
+        callButton.classList.add('phone--hangup');
+
+    }
+}
+
+function startCall() {
+    
+    ringing.play()
+    contactSub.innerHTML = 'Calling...'
+    
+    callInProgress = true;
+    startHold = setTimeout(function(){
+        ringing.pause()
+        call_options[0].audio.play()
+        
+        timer();
+    }, 3000)
+    
+    
+}
+
+function hangUp() {
+    clearTimeout(startHold);
+    stopAllAudio()
+    ringing.pause()
+    ringing.currentTime = 0;
+    callInProgress = false;
+    contactSub.innerHTML = 'Spaghetti Boys';
+    
+
+}
+
 function buttonPress(num) {
     recentPressed = String(num);
     phoneDial();
@@ -79,10 +127,14 @@ function buttonPress(num) {
 
 
 
+
+
+//====here a are for the sounds 
 function phoneDial() {
 
     phone_beep.cloneNode(true).play()
 }
+
 function playMenu() {
     
     media_menu.currentTime = 0;
@@ -103,25 +155,26 @@ function stopAllAudio() {
 
 var startHold;
 
-function startCall() {
-    if (has_called) {
-        ringing.play()
-        callID.innerHTML = "calling"
-        startHold = setTimeout(function(){
-            ringing.pause()
-            call_options[0].audio.play()
-            has_called = false;
-            callID.innerHTML = "Spaghetti boys"
-        }, 3000)
-        
-    }
-}
 
-function hangUp() {
-    clearTimeout(startHold);
-    stopAllAudio()
-    ringing.pause()
-    ringing.currentTime = 0;
-    has_called = true;
-    callID.innerHTML = "";
+
+
+function timer() {
+    var min = 0;
+    var sec = 00;
+    contactSub.innerHTML ='0:00'
+    phoneTimer = setInterval(function(){
+        console.log('in here')
+        sec += 1;
+        if (sec > 59) {
+            min += 1;
+            sec = 00;
+        }
+        if (sec < 10) {
+            fsec = '0' + sec;
+            contactSub.innerHTML = min + ':' + fsec
+        }   
+        else {
+            contactSub.innerHTML = min + ':' + sec;
+        }
+    }, 1000)
 }

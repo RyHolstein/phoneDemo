@@ -4,6 +4,9 @@ body {
   text-align: center;
   font-family: 'Roboto', sans-serif; }
 
+* {
+  box-sizing: border-box; }
+
 .sound {
   border: 1px solid whitesmoke;
   cursor: pointer; }
@@ -17,16 +20,32 @@ body {
   border-radius: 10px; }
 
 #Mock-Phone__number {
-  display: inline-block;
-  width: 80%;
-  height: 50px;
-  margin: 20px;
-  line-height: 50px;
-  text-align: center;
   color: #222222; }
 
+.contact__holder {
+  padding: 10%;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  top: 10%; }
+  .contact__holder .contact__main {
+    font-size: 2em;
+    margin-bottom: 3%; }
+  .contact__holder .contact__sub {
+    font-size: .8em;
+    font-weight: 300; }
+
 .keypad {
-  margin-top: 175px; }
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; }
+  .keypad .keypad__row {
+    position: relative;
+    width: 100%;
+    height: auto; }
   .keypad .keypad__button {
     display: inline-block;
     position: relative;
@@ -49,12 +68,17 @@ body {
         font-size: .3em;
         font-weight: 500;
         letter-spacing: 1px; }
-  .keypad button {
-    width: 70px;
-    height: 70px;
-    margin: 8px;
-    border-radius: 50px;
-    vertical-align: top;
-    background-color: #4BD964;
-    border: none;
-    outline: none; }
+  .keypad #call--button img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: auto; }
+  .keypad .phone--call {
+    background-color: #4BD964; }
+    .keypad .phone--call img {
+      transform: translate(-50%, -50%) rotate(0deg); }
+  .keypad .phone--hangup {
+    background-color: #FF3A30; }
+    .keypad .phone--hangup img {
+      transform: translate(-50%, -50%) rotate(135deg); }

@@ -11,13 +11,16 @@
 <body>
     <p>Sound Demo</p>
     <div class="Mock-Phone__holder">
-        <div id="Mock-Phone__number"></div>
         
+        <!-- <div id="Mock-Phone__number"></div> -->
         
-        
+        <div class="contact__holder">
+            <div class="contact__main">1 (877) 989-9877</div>
+            <div class="contact__sub" id="contact-sub">Spaghetti Boys</div>
+        </div>
         
         <div class="keypad">
-                <div class="keypad--row">
+                <div class="keypad__row">
                     <div class="keypad__button" onclick='buttonPress(1)'><p class="keypad__button--number">1</p></div>
                     <div class="keypad__button" onclick='buttonPress(2)'><p class="keypad__button--number">2<span>ABC</span></p></div>
                     <div class="keypad__button" onclick='buttonPress(3)'><p class="keypad__button--number">3<span>DEF</span></p></div>
@@ -27,7 +30,7 @@
                     <button onclick='buttonPress(3)'>3</button> -->
                     
                 </div>
-                <div class="keypad--row">
+                <div class="keypad__row">
                     <div class="keypad__button" onclick='buttonPress(4)'><p class="keypad__button--number">4<span>GHI</span></p></div>
                     <div class="keypad__button" onclick='buttonPress(5)'><p class="keypad__button--number">5<span>JKL</span></p></div>
                     <div class="keypad__button" onclick='buttonPress(6)'><p class="keypad__button--number">6<span>MNO</span></p></div>
@@ -37,7 +40,7 @@
                     <button onclick='buttonPress(6)' >6</button> -->
                     
                 </div>
-                <div class="keypad--row">
+                <div class="keypad__row">
                     <div class="keypad__button" onclick='buttonPress(7)'><p class="keypad__button--number">7<span>PQRS</span></p></div>
                     <div class="keypad__button" onclick='buttonPress(8)'><p class="keypad__button--number">8<span>TUV</span></p></div>
                     <div class="keypad__button" onclick='buttonPress(9)'><p class="keypad__button--number">9<span>WXYZ</span></p></div>
@@ -60,7 +63,13 @@
                     
                 </div>
                 <div class="keypad--row">
-                    <button id="call--button"onclick='startCall()' >Call</button> 
+                    <div class="keypad__button phone--call" id="call--button" onclick='callController()'>
+                        
+                        <!-- TEMP ICON  -->
+                        <img class="callbutton--call" id="callbutton--icon" src="./assets/icons/call.svg"> 
+                        <!-- ========================== -->
+
+                    </div>                    
                 </div>
         </div>
 

@@ -1,10 +1,16 @@
+
+$callGREEN : #4BD964;
+$callRED: #FF3A30;
+
 body {
     margin: 0;
     padding: 0;
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
-  
+* {
+    box-sizing: border-box;
+}
 
 .sound {
     border: 1px solid whitesmoke;
@@ -21,11 +27,11 @@ body {
 }
 
 #Mock-Phone__number {
-    display: inline-block;
-    width: 80%; height: 50px;
-    margin: 20px;
-    line-height: 50px;
-    text-align: center;
+    // display: inline-block;
+    // width: 80%; height: 50px;
+    // margin: 20px;
+    // line-height: 50px;
+    // text-align: center;
     color: #222222;
     
     
@@ -33,10 +39,36 @@ body {
     //border: 1px solid lightgray;
 
 }
+
+
+.contact__holder {
+    padding: 10%;
+    width: 100%; height: 100px;
+    position: absolute;
+    left:0; top: 10%;
+    
+    .contact__main {
+        font-size: 2em;
+        margin-bottom: 3%;
+    }
+    .contact__sub {
+        font-size: .8em;
+        font-weight: 300;
+    }
+}
+
+
 .keypad {
-    margin-top: 175px;
+    position: absolute;
+    top: 30%; left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
     
-    
+    .keypad__row {
+        position: relative;
+        width: 100%; height: auto;
+        
+    }
     .keypad__button {
         display: inline-block;
         position: relative;
@@ -62,20 +94,33 @@ body {
                 font-weight: 500;
                 letter-spacing: 1px;
             }
+           
         }
+       
 
        
     }
-
-
-    button { 
-        width: 70px; height: 70px;
-        margin: 8px;
-        border-radius: 50px;
-        vertical-align: top;
-        background-color: #4BD964;
-        border: none;
-        outline: none;
+    #call--button {
+        img {
+            position: absolute;
+            top: 50%; left: 50%;
+            width:40%;
+            
+            height: auto;
+        }
+    }
+    .phone--call {
+        
+        background-color: $callGREEN;
+        img{
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
     
+    }
+    .phone--hangup {
+        background-color: $callRED;
+        img {
+            transform: translate(-50%, -50%) rotate(135deg);
+        }
     }
 }
