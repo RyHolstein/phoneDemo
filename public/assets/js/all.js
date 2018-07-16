@@ -19,6 +19,8 @@ var phoneTimer;
 var soundOne = document.getElementById('button-1')
 var callButton = document.getElementById('call--button');
 var contactSub = document.getElementById('contact-sub');
+var topClock = document.getElementById('topbar__clock')
+
 
 var can_select = false; 
 var recentPressed = '';
@@ -110,7 +112,7 @@ function buttonPress(num) {
     recentPressed = String(num);
     phoneDial();
     stopAllAudio();
-   if(!has_called) {
+   if(callInProgress) {
        var sbSound = call_options[num];
        sbSound.audio.addEventListener('ended', function(){
             call_options[0].audio.currentTime = 0;
@@ -118,7 +120,7 @@ function buttonPress(num) {
        })
        setTimeout(function(){
            sbSound.audio.play()
-           console.log('timeout Completed')
+           
        }, 1000);
    }
 }
@@ -163,7 +165,6 @@ function timer() {
     var sec = 00;
     contactSub.innerHTML ='0:00'
     phoneTimer = setInterval(function(){
-        console.log('in here')
         sec += 1;
         if (sec > 59) {
             min += 1;
@@ -178,3 +179,20 @@ function timer() {
         }
     }, 1000)
 }
+
+
+function clock() { //this is the function for the live clock 
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    if (hours > 12 ) {
+        hours -= 12;
+    } else if (hours === 0) {
+        hours =12;
+    }
+    topClock.innerHTML = hours + ':' + minutes
+    console.log(hours, minutes)
+
+}
+clock();
+setInterval(clock, 30000)
