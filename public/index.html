@@ -10,11 +10,19 @@
 </head>
 <body>
     <p>Sound Demo</p>
-    <div class="Mock-Phone__holder">
-        
+    <div class="Mock-Phone__holder" id= "Mock-phone">
+        <div id="background__holder">
+
+        </div>
         <!-- <div id="Mock-Phone__number"></div> -->
         <div class="topbar__holder">
             <div id="topbar__clock"></div>
+            <div id="topbar__data">
+                <p class="data cell">C</p>
+                <p class="data wifi">W</p>
+                <p class="data battery">B</p>
+
+            </div>
 
         </div>
 
@@ -26,46 +34,24 @@
         
         <div class="keypad">
                 <div class="keypad__row">
-                    <div class="keypad__button" onclick='buttonPress(1)'><p class="keypad__button--number">1</p></div>
-                    <div class="keypad__button" onclick='buttonPress(2)'><p class="keypad__button--number">2<span>ABC</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(3)'><p class="keypad__button--number">3<span>DEF</span></p></div>
-<!-- 
-                    <button onclick='buttonPress(1)'>1<span>  </span></button>
-                    <button onclick='buttonPress(2)'>2<span>abc</span></button>
-                    <button onclick='buttonPress(3)'>3</button> -->
-                    
+                    <div class="keypad__button noCall" onclick='buttonPress(1)'><p class="keypad__button--number">1</p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(2)'><p class="keypad__button--number">2<span>ABC</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(3)'><p class="keypad__button--number">3<span>DEF</span></p></div>      
                 </div>
                 <div class="keypad__row">
-                    <div class="keypad__button" onclick='buttonPress(4)'><p class="keypad__button--number">4<span>GHI</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(5)'><p class="keypad__button--number">5<span>JKL</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(6)'><p class="keypad__button--number">6<span>MNO</span></p></div>
-                    
-                    <!-- <button onclick='buttonPress(4)' >4</button>
-                    <button onclick='buttonPress(5)' >5</button>
-                    <button onclick='buttonPress(6)' >6</button> -->
-                    
+                    <div class="keypad__button noCall" onclick='buttonPress(4)'><p class="keypad__button--number">4<span>GHI</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(5)'><p class="keypad__button--number">5<span>JKL</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(6)'><p class="keypad__button--number">6<span>MNO</span></p></div>  
                 </div>
                 <div class="keypad__row">
-                    <div class="keypad__button" onclick='buttonPress(7)'><p class="keypad__button--number">7<span>PQRS</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(8)'><p class="keypad__button--number">8<span>TUV</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(9)'><p class="keypad__button--number">9<span>WXYZ</span></p></div>
-
-
-                    <!-- <button onclick='buttonPress(7)' >7</button>
-                    <button onclick='buttonPress(8)' >8</button>
-                    <button onclick='buttonPress(9)' >9</button> -->
-                    
+                    <div class="keypad__button noCall" onclick='buttonPress(7)'><p class="keypad__button--number">7<span>PQRS</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(8)'><p class="keypad__button--number">8<span>TUV</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(9)'><p class="keypad__button--number">9<span>WXYZ</span></p></div>
                 </div>
                 <div class="keypad--row">
-                    <div class="keypad__button" onclick='hangUp()'><p class="keypad__button--number">*</p></div>
-                    <div class="keypad__button" onclick='buttonPress(0)'><p class="keypad__button--number">0<span>+</span></p></div>
-                    <div class="keypad__button" onclick='buttonPress(1)'><p class="keypad__button--number">#</p></div>
-
-
-                    <!-- <button onclick='hangUp()' >*</button>
-                    <button onclick='buttonPress(0)' >0</button>
-                    <button onclick='startCall()' >#</button> -->
-                    
+                    <div class="keypad__button noCall" onclick='hangUp()'><p class="keypad__button--number">*</p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(0)'><p class="keypad__button--number">0<span>+</span></p></div>
+                    <div class="keypad__button noCall" onclick='buttonPress(1)'><p class="keypad__button--number">#</p></div>
                 </div>
                 <div class="keypad--row">
                     <div class="keypad__button phone--call" id="call--button" onclick='callController()'>

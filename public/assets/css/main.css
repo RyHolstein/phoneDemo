@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  color: #222; }
 
 * {
   box-sizing: border-box; }
@@ -17,7 +18,22 @@ body {
   width: 375px;
   height: 812px;
   border: 1px solid  #E5E5E5;
-  border-radius: 40px; }
+  border-radius: 40px;
+  overflow: hidden; }
+
+#background__holder {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0; }
+
+.call__background {
+  background-image: url("../images/background/background.jpg");
+  background-size: 100%, 100%;
+  filter: blur(15px); }
 
 #Mock-Phone__number {
   color: #222222; }
@@ -33,6 +49,15 @@ body {
     display: inline-block;
     left: 8%;
     top: 60%; }
+  .topbar__holder .data {
+    display: inline-block;
+    position: absolute; }
+  .topbar__holder .cell {
+    right: 21%; }
+  .topbar__holder .wifi {
+    right: 14%; }
+  .topbar__holder .battery {
+    right: 8%; }
 
 .contact__holder {
   padding: 10%;
@@ -58,6 +83,16 @@ body {
     position: relative;
     width: 100%;
     height: auto; }
+  .keypad .noCall {
+    background: #e5e5e5;
+    background-image: inherit; }
+    .keypad .noCall:active {
+      background-color: #b2b2b2; }
+  .keypad .call {
+    background: rgba(229, 229, 229, 0.2);
+    background-image: inherit; }
+    .keypad .call:active {
+      background-color: rgba(178, 178, 178, 0.2); }
   .keypad .keypad__button {
     display: inline-block;
     position: relative;
@@ -65,8 +100,7 @@ body {
     height: 75px;
     margin: 10px;
     border-radius: 50px;
-    vertical-align: top;
-    background: #E5E5E5; }
+    vertical-align: top; }
     .keypad .keypad__button .keypad__button--number {
       position: absolute;
       font-size: 1.9em;

@@ -16,16 +16,18 @@ var ringing = new Audio('./assets/sounds/effects/phone_ringing.mp3')
 var phoneTimer;
 
 
-var soundOne = document.getElementById('button-1')
+var soundOne = document.getElementById('button-1');
 var callButton = document.getElementById('call--button');
 var contactSub = document.getElementById('contact-sub');
-var topClock = document.getElementById('topbar__clock')
+var topClock = document.getElementById('topbar__clock');
+var phone = document.getElementById('Mock-phone');
+
 
 
 var can_select = false; 
 var recentPressed = '';
 var callInProgress = false;
-
+var callConnected = false;
 
 var call_options = {
     0 : {
@@ -63,20 +65,17 @@ var call_options = {
 
 }
 
-
-
 function callController() {
     if (callInProgress) {
+        
         hangUp();
-       
-        callButton.classList.remove('phone--hangup');
-        callButton.classList.add('phone--call');
-        clearInterval(phoneTimer);
+        
+        
         
     }else {
+        changePhoneLook(true);
         startCall();
-        callButton.classList.remove('phone--call');
-        callButton.classList.add('phone--hangup');
+      
 
     }
 }
@@ -86,11 +85,12 @@ function startCall() {
     ringing.play()
     contactSub.innerHTML = 'Calling...'
     
+    
     callInProgress = true;
     startHold = setTimeout(function(){
+        callConnected = true;
         ringing.pause()
         call_options[0].audio.play()
-        
         timer();
     }, 3000)
     
@@ -98,12 +98,22 @@ function startCall() {
 }
 
 function hangUp() {
+    clearInterval(phoneTimer);
     clearTimeout(startHold);
     stopAllAudio()
     ringing.pause()
-    ringing.currentTime = 0;
-    callInProgress = false;
-    contactSub.innerHTML = 'Spaghetti Boys';
+    contactSub.innerHTML = 'Call Ended';
+
+    setTimeout(function(){
+        ringing.currentTime = 0;
+        callInProgress = false;
+        callConnected =false;
+        contactSub.innerHTML = 'Spaghetti Boys';
+        changePhoneLook(false);
+
+    }, 2000)
+
+
     
 
 }
@@ -112,7 +122,7 @@ function buttonPress(num) {
     recentPressed = String(num);
     phoneDial();
     stopAllAudio();
-   if(callInProgress) {
+   if(callConnected) {
        var sbSound = call_options[num];
        sbSound.audio.addEventListener('ended', function(){
             call_options[0].audio.currentTime = 0;
@@ -125,9 +135,37 @@ function buttonPress(num) {
    }
 }
 
+var background = document.getElementById('background__holder')
+var keypad = document.getElementsByClassName('keypad__button')
 
+function changePhoneLook(status) { //this will handle the phones look 
 
+    if (status) { //when the call starts 
 
+        document.body.style.color = '#eee'
+        background.classList.add('call__background')
+        phone.classList.add('calling')
+        callButton.classList.remove('phone--call');
+        callButton.classList.add('phone--hangup');
+        for (var i =0; i < keypad.length; i++ ) {
+            keypad[i].classList.remove('noCall')
+            keypad[i].classList.add('call')
+        }
+    
+    }else { //when the call ends
+        document.body.style.color = '#222';
+        background.classList.remove('call__background');
+        callButton.classList.remove('phone--hangup');
+        callButton.classList.add('phone--call');
+        phone.classList.remove('calling')
+       
+        for (var i =0; i < keypad.length; i++ ) {
+            keypad[i].classList.add('noCall')
+            keypad[i].classList.remove('call')
+        }
+      
+    }
+}
 
 
 
@@ -189,10 +227,18 @@ function clock() { //this is the function for the live clock
         hours -= 12;
     } else if (hours === 0) {
         hours =12;
+    } if (minutes < 10 ) {
+        var fmin = '0' + minutes; 
+        topClock.innerHTML = hours + ':' + fmin
+    }else {
+        topClock.innerHTML = hours + ':' + minutes
     }
-    topClock.innerHTML = hours + ':' + minutes
-    console.log(hours, minutes)
+    //console.log(hours, minutes)
 
 }
 clock();
-setInterval(clock, 30000)
+setInterval(clock, 30000);
+
+
+
+

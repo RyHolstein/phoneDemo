@@ -2,11 +2,19 @@
 $callGREEN : #4BD964;
 $callRED: #FF3A30;
 
+
+$buttonGREY : rgba(229, 229, 229, 1);
+$callGREY : rgba(229, 229, 229, .2);
+
+
+
+
 body {
     margin: 0;
     padding: 0;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    color: #222;
 }
 * {
     box-sizing: border-box;
@@ -24,6 +32,24 @@ body {
     
     border: 1px solid  #E5E5E5;
     border-radius: 40px;
+    overflow: hidden;
+}
+
+#background__holder {
+    display: inline-block;
+    position: absolute;
+    height: 100%; width: 100%;
+    left: 0; top: 0;
+    z-index: 0;
+    
+    //border: 1px solid red;
+
+}
+
+.call__background {
+    background-image: url('../images/background/background.jpg');
+    background-size: 100%, 100%;
+    filter: blur(15px)
 }
 
 #Mock-Phone__number {
@@ -53,6 +79,20 @@ body {
         left:8%; top: 60%;
 
     } 
+    .data {
+        display: inline-block;
+        // border: 1px solid red;
+        position: absolute;
+    }
+    .cell {
+        right: 21%;
+    }
+    .wifi  {
+        right: 14%;
+    }
+    .battery {
+        right: 8%;
+    }
 }
 
 .contact__holder {
@@ -83,6 +123,22 @@ body {
         width: 100%; height: auto;
         
     }
+    .noCall {
+        background: $buttonGREY;
+        background-image: inherit;
+        
+       &:active {
+           background-color: darken( $buttonGREY, 20);
+       }
+    }
+    .call {
+        background: $callGREY;
+        background-image: inherit;
+        
+       &:active {
+           background-color: darken( $callGREY, 20);
+       }
+    }
     .keypad__button {
         display: inline-block;
         position: relative;
@@ -91,8 +147,12 @@ body {
         //border: .5px solid grey;
         border-radius: 50px;
         vertical-align: top;
-        background: #E5E5E5;
-     
+        
+       
+
+       .keypad__button--calling {
+
+       }
         .keypad__button--number {
             position: absolute;
             
@@ -137,4 +197,17 @@ body {
             transform: translate(-50%, -50%) rotate(135deg);
         }
     }
+}
+
+
+
+
+
+
+///these are for when the phone is calling 
+
+
+.calling {
+    // background-color: rgba(0,0,0, .8)
+
 }
