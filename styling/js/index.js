@@ -10,7 +10,6 @@
 // 9. mix 
 // 0. home 
 
-
 var phone_beep = new Audio('./assets/sounds/beep_Sound.mp3')
 var ringing = new Audio('./assets/sounds/effects/phone_ringing.mp3')
 var phoneTimer;
@@ -23,18 +22,29 @@ var topClock = document.getElementById('topbar__clock');
 var phone = document.getElementById('Mock-phone');
 
 
-
+var isRecording = false;
 var can_select = false; 
 var recentPressed = '';
 var callInProgress = false;
 var callConnected = false;
+var recordingTO;
+
 
 var call_options = {
     0 : {
         audio: new Audio('./assets/sounds/voicemail/sbphone.mp3')
+        
     },
     1 : {
-        audio: new Audio('./assets/sounds/voicemail/voicemail.mp3')
+        audio: new Audio('./assets/sounds/voicemail/voicemail.mp3'),
+        action: (time) => {
+            var timeout = Math.floor(time * 1000)
+            console.log(timeout);
+            recordingTO = setTimeout(() => {
+                start();
+                console.log('should record')
+            }, timeout);
+        }
     },
     2 : {
         audio: new Audio('./assets/sounds/voicemail/news.mp3') 
@@ -67,11 +77,11 @@ var call_options = {
 
 function callController() {
     if (callInProgress) {
-        
         hangUp();
-        
-        
-        
+        if (isRecording) {
+            clearTimeout(recordingTO);
+            stop();
+        }
     }else {
         changePhoneLook(true);
         startCall();
@@ -85,13 +95,11 @@ function startCall() {
     ringing.play()
     contactSub.innerHTML = 'Calling...'
     
-    
     callInProgress = true;
     startHold = setTimeout(function(){
         callConnected = true;
         ringing.pause()
         call_options[0].audio.play()
-        timer();
     }, 3000)
     
     
@@ -122,17 +130,23 @@ function buttonPress(num) {
     recentPressed = String(num);
     phoneDial();
     stopAllAudio();
-   if(callConnected) {
-       var sbSound = call_options[num];
-       sbSound.audio.addEventListener('ended', function(){
-            call_options[0].audio.currentTime = 0;
-            call_options[0].audio.play()
-       })
-       setTimeout(function(){
-           sbSound.audio.play()
-           
-       }, 1000);
-   }
+    if(callConnected) {
+        var sbSound = call_options[num];
+        
+        setTimeout(function(){
+            sbSound.audio.play()
+        
+            if (sbSound.action) {
+                sbSound.action(sbSound.audio.duration);
+                
+            }else {
+                sbSound.audio.addEventListener('ended', function(){
+                    call_options[0].audio.currentTime = 0;
+                    call_options[0].audio.play()
+                })
+            }
+        }, 1000);
+    }
 }
 
 var background = document.getElementById('background__holder')
@@ -169,22 +183,19 @@ function changePhoneLook(status) { //this will handle the phones look
 
 
 
-//====here a are for the sounds 
-function phoneDial() {
 
-    phone_beep.cloneNode(true).play()
-}
+//====here a are for the sounds 
+function phoneDial() {phone_beep.cloneNode(true).play()}
 
 function playMenu() {
-    
     media_menu.currentTime = 0;
     media_menu.play()
 }
+
 function selectChange() {
     can_select = !can_select;
     console.log(can_select);
 }
-
 
 function stopAllAudio() {
     Object.keys(call_options).forEach(function(item) {
